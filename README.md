@@ -1,3 +1,52 @@
+Implementation of things are implemented in this project
+1 validation 
+2 Softdelete
+3 Pop up and ajax call for deletion of the data though js and jq.
+4 Seeder Implemenation
+5 Font awesome  del and edit.
+
+php artisan make:seeder BlogTableSeeder
+php artisan db:seed --class=BlogTableSeeder
+php artisan db:seed
+php artisan db:seed --class=UsersTableSeeder
+
+
+
+Recurring billing happens when a merchant automatically charges a customer for goods or services on a prearranged schedule. ... Examples include cable bills, cell phone bills, gym membership fees, utility bills, and magazine subscriptions. Recurring billing may also be referred to as automatic b
+
+php artisan make:seeder BlogTableSeeder
+php artisan db:seed --class=BlogTableSeeder
+php artisan db:seed
+php artisan db:seed --class=UsersTableSeeder
+/*
+Rolling Back Migrations
+To rollback the latest migration operation, you may use the rollback command. This command rolls back the last "batch" of migrations, which may include multiple migration files:
+
+php artisan migrate:rollback
+You may rollback a limited number of migrations by providing the step option to the rollback command. For example, the following command will rollback the last five migrations:
+
+php artisan migrate:rollback --step=5
+
+
+The migrate:reset command will roll back all of your application's migrations:
+php artisan migrate:reset
+*/
+Rollback & Migrate In Single Command
+The migrate:refresh command will roll back all of your migrations and then execute the migrate command. This command effectively re-creates your entire database:
+php artisan migrate:refresh
+
+// Refresh the database and run all database seeds...
+php artisan migrate:refresh --seed
+You may rollback & re-migrate a limited number of migrations by providing the step option to the refresh command. For example, the following command will rollback & re-migrate the last five migrations:
+
+php artisan migrate:refresh --step=5
+
+Drop All Tables & Migrate
+The migrate:fresh command will drop all tables from the database and then execute the migrate command:
+php artisan migrate:fresh
+
+
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
