@@ -11,10 +11,13 @@
 |
 */
 
+// https://datatables.yajrabox.com/starter
+// composer require yajra/laravel-datatables-oracle:"~9.0"
+
 Route::get('/', function () {
     return view('welcome');
 
-    
+
 });
 
 Auth::routes();
