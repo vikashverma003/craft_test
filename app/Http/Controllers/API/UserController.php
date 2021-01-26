@@ -140,7 +140,27 @@ public $badRequestCode = 400;
 	}
 
 	public function editProfile(Request $request){
+		$user =Auth::user();
+		$req=$request->name;
+		//echo $req;
+		  $user->name=is_null($request->name)?$user->name:$request->name;
+		  $url= \URL::to('/');
+		  $user_image='';
+		  if ($request->hasFile('image')) {
+        	            $file = request()->file('image');
+        	            $ext=$file->getClientOriginalExtension();
+        	            $imagename = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
+        	            $file->move('admin/images/users', $imagename);
+        	            $user_image=$imagename;
 
+        	            }
+        	else{
+                $user_image=$user->profile;
+        	}
+        	$user->profile=is_null($user_image)?NULL:$user_image;
+        	  
+		$user->save();
+		return response()->json(['status'=>true,"message"=>"updation has been successfull"]);
 
 	}
 
@@ -153,6 +173,14 @@ public $badRequestCode = 400;
    //         $request->user()->device_token=null;
 			// $request->user()->save();
    //        $request->user()->token()->revoke();
+
+	}
+
+	public function change_mid_data(Request $request){
+
+				$user =Auth::user();
+				echo $user;
+
 
 	}
 

@@ -29,6 +29,13 @@ Route::post('change_password', 'API\UserController@changePassword');
 Route::post('edit_profile', 'API\UserController@editProfile');
 Route::post('logout', 'API\UserController@logout');
 
+   Route::middleware('user_auth')->group(function(){
+
+   	Route::post('change_mid_data', 'API\UserController@change_mid_data');
+
+
+   });
+
 
 });
 
