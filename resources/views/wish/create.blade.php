@@ -12,7 +12,7 @@
 
 <div class="container">
 	<br></br><br></br>
-<form method="POST" action="{{ url('wish')}}" class="form-sample" enctype="multipart/form-data">
+<form method="POST" action="{{ url('user/wish')}}" class="form-sample" enctype="multipart/form-data">
 	@csrf
   <div class="form-group">
     <label for="exampleInputEmail1">Wish Name</label>

@@ -26,10 +26,18 @@ Auth::routes();
 // Route::post('wish/{id}/update', ['as' => 'kit.update', 'uses' => 'WishListController@update']);
 //     Route::get('wish/{id}/delete', ['as' => 'kit.delete', 'uses' => 'WishListController@destroy']);
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth'])->prefix('user')->group(function(){
 Route::resource('wish','WishListController');
 Route::post('wish/{id}/update', ['as' => 'kit.update', 'uses' => 'WishListController@update']);
 Route::get('wish/{id}/delete', ['as' => 'kit.delete', 'uses' => 'WishListController@destroy']);
+
+Route::get('ajax_create','WishListController@ajax_create')->name('ajax_create');
+
+Route::post('ajax_create/wishy','WishListController@wishy')->name('wishy');
+
+
+Route::get('/get_relation', 'WishListController@get_relation_data')->name('get_relation');
+
 Route::get('sam',function(){
 
 	echo 34324;

@@ -26,7 +26,9 @@
 
 <div class="container">
   <h2>Wish List</h2>
-  <a href="{{url('wish/create')}}">Add Wishes</a>
+  <a href="{{url('user/wish/create')}}">Add Wishes</a>
+    <a href="{{url('user/ajax_create')}}">Add Wishes AJax</a>
+
   @if (session('er_status'))
                   <div class="alert alert-danger">{!! session('er_status') !!}</div>
                 @endif
@@ -46,7 +48,7 @@
       
       <tr class="del{{$wishes->id}}">
         <td>{{$wishes->wishlist_name}}</td>
-        <td><a href="{{url('/wish/')}}/{{$wishes->id}}/edit"><i class="fa fa-edit"></i></a><a href="#" onclick="delete_confirmation('{{$wishes->id}}')"
+        <td><a href="{{url('/user/wish/')}}/{{$wishes->id}}/edit"><i class="fa fa-edit"></i></a><a href="#" onclick="delete_confirmation('{{$wishes->id}}')"
 > <i class="fa fa-trash"></i></a></td>
   
       </tr>
@@ -78,7 +80,7 @@
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
           type: 'GET',
-          url: "{{url('wish')}}/"+id+'/'+'delete',
+          url: "{{url('user/wish')}}/"+id+'/'+'delete',
           success:function(data){
             console.log("dddd"+data.id);
                 //$('.del'+id).remove();
