@@ -98,6 +98,8 @@ public $badRequestCode = 400;
 
 	public function randomPasswordGenerator(){
 		     $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+		     //echo $alphabet[6];die();
+		     //echo rand(0,9);die();
 		     $arr_new=[];
 		     $str_len=strlen($alphabet)-1;
 		     for($i=0;$i<=8;$i++){
