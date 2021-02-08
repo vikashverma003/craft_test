@@ -35,30 +35,80 @@
                 @if (session('su_status'))
                   <div class="alert alert-success">{!! session('su_status') !!}</div>
                 @endif
+  <form name="filter_listing">
   <table class="table table-striped">
     <thead>
       <tr>
   
-        <th>wish name</th>
+        <th>wish name <td rowspan="1" colspan="1">
+                                        <input type="text" class="form-control form-filter input-sm" name="name" id="name" placeholder="Name">
+                                    </td></th>
         <th>Action</th>
       </tr>
     </thead>
-    <tbody>
-      @foreach($wish as $wishes)
-      
-      <tr class="del{{$wishes->id}}">
-        <td>{{$wishes->wishlist_name}}</td>
-        <td><a href="{{url('/user/wish/')}}/{{$wishes->id}}/edit"><i class="fa fa-edit"></i></a><a href="#" onclick="delete_confirmation('{{$wishes->id}}')"
-> <i class="fa fa-trash"></i></a></td>
-  
-      </tr>
-    
-     @endforeach
+    <tbody id="dynamicContent">
+   
+   @include('wish.list_check')
     </tbody>
   </table>
+</form>
 </div>
 
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+<script>
+    var full_path = "{{url('user')}}";
+    var jqxhr = {abort: function () {  }};
+
+  $(document).ready(function(){
+
+     $(document).on('keyup', '#name, #email, #phone,#todz_id', function () {
+      //alert(242);
+            if($(this).val().length > 2)
+            {
+                loadListings(full_path + '/wish/?page=');
+            }
+            if($(this).val().length == 0)
+            {
+                loadListings(full_path + '/wish/?page=');
+            }
+        });
+
+  })
+
+
+        function loadListings(url){
+            var filtering = $("form[name=filter_listing]").serialize();
+            //abort previous ajax request if any
+            alert(filtering);
+
+            jqxhr.abort();
+            jqxhr =$.ajax({
+                type : 'get',
+                url : url,
+                data : filtering,
+                dataType : 'html',
+                
+                success : function(data){
+                    data = data.trim();
+                    $("#dynamicContent").empty().html(data);
+                },
+                error : function(response){
+                   // stopLoader('body');
+                },
+                complete:function(){
+                   // stopLoader('body');
+                }
+            });
+        }
+
+
+</script>
+
 
 <script type="text/javascript">
   

@@ -1,4 +1,5 @@
 Implementation of things are implemented in this project
+
 1 validation 
 2 Softdelete
 3 Pop up and ajax call for deletion of the data though js and jq.
@@ -6,6 +7,7 @@ Implementation of things are implemented in this project
 5 Font awesome  del and edit.
 6 Datatable
 7 Apis with authentication..
+8 Log
 
 php artisan make:seeder BlogTableSeeder
 php artisan db:seed --class=BlogTableSeeder

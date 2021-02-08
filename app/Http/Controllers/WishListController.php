@@ -30,14 +30,16 @@ class WishListController extends Controller
            $newDateFormat3 = date('y/m/d', strtotime($user->created_at));
 
            $change_format=str_replace('/','-',$newDateFormat3);
-           $d=date('y-m-d');
-            // echo $d;die();
+           $d=date('Y-m-d');
+           // echo $d;die();
            // $date=date('Y-M-D',strtotime($user->created_at));
 
-           // $today=date('Y-M-D');
+           // $today=date('Y-m-d');//die();
            // $st_date=strtotime('+2',strtotime($today));
            // $changed_date=date('Y-m-d',$st_date);
-           // $user=User::with('wishes')->get();
+
+           //echo $changed_date;die();
+           $user=User::with('wishes')->get();
 
            $user=User::whereHas('wishes',function($q){
 
@@ -55,12 +57,21 @@ class WishListController extends Controller
         }
 
 
-    public function index()
+    public function index(Request $request)
     {
     
           // $wish= whishlist::where('id',auth()->user()->id)->where('deleted_at',null)->get();
 
-       $wish= whishlist::where('deleted_at',null)->get();
+       $wishes= whishlist::where('deleted_at',null);
+        $inputs = $request->all();
+
+        if(isset($inputs['name'])){
+            $wishes->where('wishlist_name', 'like', '%' . $inputs['name'] . '%');
+        }
+       $wish=$wishes->paginate(10);
+       if($request->ajax()){
+            return view('wish.list_check', compact('wish'));
+        }
        return view('wish.list',compact('wish'));
     }
 
